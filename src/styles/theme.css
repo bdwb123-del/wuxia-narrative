@@ -1,0 +1,300 @@
+/* ===== 江湖夜雨 · 水墨风主题 ===== */
+
+/* 字体：优先 Windows 内置中文字体，无需加载外部资源 */
+/* SimSun=宋体, STKaiti=楷体, STXingkai=行楷, 均 Windows 10/11 内置 */
+
+:root {
+  /* ---- 墨色系 ---- */
+  --ink-black: #1a1a1a;
+  --ink-dark: #2c2c2c;
+  --ink-gray: #5a5a5a;
+  --ink-light: #8a8a8a;
+  --ink-lighter: #c0c0c0;
+
+  /* ---- 宣纸系 ---- */
+  --paper-white: #f5f0e8;
+  --paper-light: #ede4d3;
+  --paper: #e8dcc8;
+  --paper-dark: #d4c5a9;
+  --paper-darker: #b8a88a;
+
+  /* ---- 朱砂点缀 ---- */
+  --cinnabar: #c04040;
+  --cinnabar-light: #d46060;
+  --cinnabar-dark: #8b2020;
+
+  /* ---- 金 ---- */
+  --gold: #b8860b;
+  --gold-light: #daa520;
+  --gold-pale: #f0d080;
+
+  /* ---- 青 ---- */
+  --jade: #5b8c5a;
+  --jade-light: #7ab87a;
+  --celadon: #a8d8a8;
+
+  /* ---- 武侠专用色 ---- */
+  --qi-blue: #4169e1;
+  --qi-cyan: #00aaaa;
+  --blood-red: #8b0000;
+  --shadow: rgba(0, 0, 0, 0.3);
+
+  /* ---- 字体 ---- */
+  --font-display: 'STKaiti', 'KaiTi', 'SimSun', serif;
+  --font-body: 'STSong', 'SimSun', 'NSimSun', serif;
+  --font-mono: 'Courier New', 'SimSun', monospace;
+
+  /* ---- 间距 ---- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* ---- 圆角 ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* ---- 阴影 ---- */
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.25);
+
+  /* ---- 动画 ---- */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+/* ===== 全局重置 ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--paper-white);
+  color: var(--ink-black);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== 宣纸纹理背景 ===== */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  /* CSS noise 模拟纸张纹理 */
+  background-image:
+    /* 纤维纹理 */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 119, 80, 0.03) 2px,
+      rgba(139, 119, 80, 0.03) 4px
+    ),
+    /* 墨色渐变边缘 */
+    radial-gradient(
+      ellipse at 50% 50%,
+      transparent 60%,
+      rgba(139, 119, 80, 0.08) 100%
+    );
+}
+
+/* ===== 滚动条 ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-lighter);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-light);
+}
+
+/* ===== 水墨装饰元素 ===== */
+.ink-border {
+  border: 2px solid var(--ink-black);
+  box-shadow:
+    inset 0 0 8px rgba(0, 0, 0, 0.05),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ink-border-top {
+  border-top: 2px solid var(--ink-black);
+}
+
+.ink-border-bottom {
+  border-bottom: 1px solid var(--ink-lighter);
+}
+
+/* ===== 卷轴效果 ===== */
+.scroll-container {
+  background: linear-gradient(
+    180deg,
+    var(--paper-light) 0%,
+    var(--paper-white) 5%,
+    var(--paper-white) 95%,
+    var(--paper-light) 100%
+  );
+  border-left: 3px solid var(--paper-darker);
+  border-right: 3px solid var(--paper-darker);
+  position: relative;
+}
+
+.scroll-container::before,
+.scroll-container::after {
+  content: '';
+  position: absolute;
+  left: -8px;
+  right: -8px;
+  height: 12px;
+  background: linear-gradient(
+    180deg,
+    var(--paper-dark) 0%,
+    var(--paper-darker) 50%,
+    var(--paper-dark) 100%
+  );
+  border-radius: 2px;
+}
+
+.scroll-container::before { top: -6px; }
+.scroll-container::after { bottom: -6px; }
+
+/* ===== 印章效果 ===== */
+.seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--cinnabar);
+  color: var(--cinnabar);
+  font-family: var(--font-display);
+  font-size: 20px;
+  transform: rotate(-5deg);
+  flex-shrink: 0;
+}
+
+/* ===== 按钮 ===== */
+.btn-ink {
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 8px 24px;
+  background: var(--ink-black);
+  color: var(--paper-white);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  letter-spacing: 2px;
+}
+
+.btn-ink:hover {
+  background: var(--ink-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-ink:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 7px 23px;
+  background: transparent;
+  color: var(--ink-black);
+  border: 1px solid var(--ink-black);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  letter-spacing: 1px;
+}
+
+.btn-outline:hover {
+  background: var(--ink-black);
+  color: var(--paper-white);
+}
+
+/* ===== 输入框 ===== */
+.input-ink {
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 10px 16px;
+  background: var(--paper-white);
+  border: 1px solid var(--ink-lighter);
+  color: var(--ink-black);
+  outline: none;
+  transition: border-color var(--transition-fast);
+  width: 100%;
+}
+
+.input-ink:focus {
+  border-color: var(--ink-black);
+}
+
+.input-ink::placeholder {
+  color: var(--ink-light);
+}
+
+/* ===== 动画 ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes inkDrop {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes brushStroke {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-slow) ease forwards;
+}
+
+.slide-in {
+  animation: slideInRight var(--transition-normal) ease forwards;
+}
+
+/* ===== 打字机光标 ===== */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor::after {
+  content: '▏';
+  animation: blink 1s step-end infinite;
+  color: var(--cinnabar);
+}

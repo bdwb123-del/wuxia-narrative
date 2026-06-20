@@ -25,7 +25,7 @@ export interface LLMConfig {
 export function defaultLLMConfig(): LLMConfig {
   return {
     endpoint: 'https://api.deepseek.com/v1/chat/completions',
-    apiKey: 'sk-b3c610f1c4504d5481830da3f717f81f',
+    apiKey: '', // 在设置面板中填入
     model: 'deepseek-chat',
     temperature: 0.8,
     maxTokens: 4096,
